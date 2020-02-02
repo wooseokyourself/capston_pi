@@ -1,2 +1,2 @@
-# capston_pi
+# capstone_pi
 This code will run in Raspberry Pi
