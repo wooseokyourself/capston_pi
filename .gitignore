@@ -1,1 +1,4 @@
 *.out
+*.jpeg
+*.png
+temp.txt

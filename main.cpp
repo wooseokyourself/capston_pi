@@ -8,6 +8,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #define MAXLINE  511
 
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
 				printf("파일이 없습니다\n");
 				continue;
 			}
-			f = malloc(size);
+			f = (char *)malloc(size);
 			recv(sock, f, size, 0);
 			while (1) {
 				filehandle = open(filename, O_CREAT | O_EXCL | O_WRONLY, 0666);
@@ -77,7 +78,7 @@ int main(int argc, char *argv[])
 					sprintf(filename + strlen(filename), "_1");
 				else break;
 			}
-			write(filehandle, f, size, 0);
+			write(filehandle, f, size);
 			close(filehandle);
 			printf("다운로드 완료\n");//전송이 잘 되었다면
 		}
@@ -113,10 +114,10 @@ int main(int argc, char *argv[])
 			strcpy(buf, "ls");
 			send(sock, buf, 100, 0);
 			recv(sock, &size, sizeof(int), 0);
-			f = malloc(size);
+			f = (char *)malloc(size);
 			recv(sock, f, size, 0);
 			filehandle = creat("temp.txt", O_WRONLY);
-			write(filehandle, f, size, 0);
+			write(filehandle, f, size);
 			close(filehandle);
 			printf("--The Remote Directory List--\n");
 			system("cat temp.txt");	//현재 디렉토리의 파일 출력
