@@ -1,2 +1,2 @@
-# capstone_pi
-This code will run in Raspberry Pi
+### origin branch: 
+### mac branch: /Users/choiwooseok/Google 드라이브/Project/Client (mac)
