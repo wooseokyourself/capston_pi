@@ -34,12 +34,11 @@ main(int argc, char *argv[]) {
 		exit(1);
 	}
 	struct sockaddr_in server;
-	struct stat obj;
 	int sock;
 	char bufmsg[MAXLINE];
 	char buf[100], command[5], filename[MAXLINE], *f;
 	char temp[20];
-	int k, size, status;
+	int k, imgSize, status;
 	int filehandle;
 	sock = tcp_connect(AF_INET, argv[1], atoi(argv[2]));
 	if (sock == -1) {
@@ -75,17 +74,21 @@ main(int argc, char *argv[]) {
 			strcpy (buf, "put ");
 			strcat (buf, filename);
 			
-			/* 이 send() 는 서버코드에서 무한루프의 시작인 recv() 가 받는다. */
+			/*	이 send() 는 서버코드에서 무한루프의 시작인 recv() 가 받는다. */
 			send (sock, buf, 100, 0);
 
-			stat (filename, &obj);
-			size = obj.st_size;
+			/*	stat 함수를 이용하여 파일의 정보를 추출하여 그 정보들을 imgInfo에 저장 */
+			struct stat imgInfo;
+			stat (filename, &imgInfo);
+			imgSize = imgInfo.st_size;
 
-			/**/
-			send (sock, &size, sizeof(int), 0);//명령어 전송
+printf ("imgSize: %s\n", imgSize);
 
-			/**/
-			sendfile (sock, filehandle, NULL, size);//파일 전송
+			/*	imgSize 전송 */
+			send (sock, &imgSize, sizeof(int), 0); // 파일을 전송하기 전에 imgSize를 먼저 전송
+
+			/* ssize_t sendfile (int out_fd, int in_fd, off_t *offset, size_t count); */
+			sendfile (sock, filehandle, NULL, imgSize); // 파일 송신
 
 			/**/
 			recv (sock, &status, sizeof(int), 0); //서버로부터 파일이 잘 쓰였는지를 받음
