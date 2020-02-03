@@ -18,6 +18,13 @@
 int
 tcp_connect(int, char *, unsigned short);
 
+void
+error_handling (char *message) {
+    fputs (message, stderr);
+    printf("\n");
+    exit(1);
+}
+
 int
 main(int argc, char *argv[]) {
 
@@ -69,16 +76,22 @@ main(int argc, char *argv[]) {
 			strcat (buf, filename);
 			
 			/* 이 send() 는 서버코드에서 무한루프의 시작인 recv() 가 받는다. */
-			send (sock, buf, 100, 0);
+			// send (sock, buf, 100, 0);
+			if (write (sock, buf, 0) == -1)
+				error_handling ("write() error");
 
 			stat (filename, &obj);
 			size = obj.st_size;
 
 			/**/
-			send (sock, &size, sizeof(int), 0);//명령어 전송
+			// send (sock, &size, sizeof(int), 0);//명령어 전송
+			if (write (sock, &size, sizeof(int), 0) == -1) 
+				error_handling ("write() error");
 
 			/**/
-			sendfile (sock, filehandle, NULL, size);//파일 전송
+			// sendfile (sock, filehandle, NULL, size);//파일 전송
+			if (write (sock, filehandle, NULL, size) == -1)
+				error_handling ("write() error");
 
 			/**/
 			recv (sock, &status, sizeof(int), 0); //서버로부터 파일이 잘 쓰였는지를 받음
@@ -91,7 +104,9 @@ main(int argc, char *argv[]) {
 		else if (!strcmp(bufmsg, "quit\n")) {//quit명령어를 입력받았다면
 			strcpy (buf, "quit");
 			send (sock, buf, 100, 0);
-			recv (sock, &status, 100, 0);
+			// recv (sock, &status, 100, 0);
+			if (read (sock, &status, 100, 0) == -1)
+				error_handling ("read() error");
 			if (status) {
 				printf("서버를 닫는 중..\n");
 				exit(0);
