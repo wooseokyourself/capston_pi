@@ -82,10 +82,11 @@ main(int argc, char *argv[]) {
 			stat (filename, &imgInfo);
 			imgSize = imgInfo.st_size;
 
-printf ("imgSize: %s\n", imgSize);
 
 			/*	imgSize 전송 */
 			send (sock, &imgSize, sizeof(int), 0); // 파일을 전송하기 전에 imgSize를 먼저 전송
+
+printf ("imgSize: %d\n", imgSize);
 
 			/* ssize_t sendfile (int out_fd, int in_fd, off_t *offset, size_t count); */
 			sendfile (sock, filehandle, NULL, imgSize); // 파일 송신
