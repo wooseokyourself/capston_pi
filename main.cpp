@@ -14,6 +14,7 @@
 // #include "ImageProcessing.h"
 
 #define MAXLINE  511
+#define MAXBUF 1024
 
 int
 tcp_connect(int, char *, unsigned short);
@@ -35,11 +36,10 @@ main(int argc, char *argv[]) {
 	}
 	struct sockaddr_in server;
 	int sock;
-	char bufmsg[MAXLINE];
-	char buf[100], command[5], filename[MAXLINE], *f;
+	char buf[MAXBUF], fileName[MAXLINE], *f;
 	char temp[20];
 	int k, imgSize, status;
-	int filehandle;
+	int fileHandle;
 	sock = tcp_connect(AF_INET, argv[1], atoi(argv[2]));
 	if (sock == -1) {
 		printf("tcp_connect fail");
@@ -48,7 +48,6 @@ main(int argc, char *argv[]) {
 /* 소켓 프로그래밍 셋팅 */
 
 
-	while (1) {
 
 /*
 
@@ -56,60 +55,54 @@ main(int argc, char *argv[]) {
 
 */
 
-		printf ("\033[1;33m명령어 : put, quit\n");
-		printf ("\033[1;32mclient> ");
-		fgets (bufmsg, MAXLINE, stdin); //명령어 입력
-		fprintf (stderr, "\033[97m");   //글자색을 흰색으로 변경
 
 /* 이하 if문이 true이면 파일을 서버로 업로드 */
-		if (!strcmp (bufmsg, "put\n")) {//put명령어를 입력받았다면
-			printf ("업로드할 파일 : ");
-			scanf ("%s", filename);       //파일 이름 입력
-			fgets (temp, MAXLINE, stdin); //버퍼에 남은 엔터 제거
-			filehandle = open (filename, O_RDONLY);
-			if (filehandle == -1) {//파일이 없다면
-				printf ("파일이 없습니다.\n");
-				continue;
-			}
-			strcpy (buf, "put ");
-			strcat (buf, filename);
-			
-			/*	이 send() 는 서버코드에서 무한루프의 시작인 recv() 가 받는다. */
-			send (sock, buf, 100, 0);
-
-			/*	stat 함수를 이용하여 파일의 정보를 추출하여 그 정보들을 imgInfo에 저장 */
-			struct stat imgInfo;
-			stat (filename, &imgInfo);
-			imgSize = imgInfo.st_size;
-
-
-			/*	imgSize 전송 */
-			send (sock, &imgSize, sizeof(int), 0); // 파일을 전송하기 전에 imgSize를 먼저 전송
-
-printf ("imgSize: %d\n", imgSize);
-
-			/* ssize_t sendfile (int out_fd, int in_fd, off_t *offset, size_t count); */
-			sendfile (sock, filehandle, NULL, imgSize); // 파일 송신
-
-			/**/
-			recv (sock, &status, sizeof(int), 0); //서버로부터 파일이 잘 쓰였는지를 받음
-
-			if (status)//업로드가 잘 되었다면
-				printf("업로드 완료\n");
-			else
-				printf("업로드 실패\n");
-		}
-		else if (!strcmp(bufmsg, "quit\n")) {//quit명령어를 입력받았다면
-			strcpy (buf, "quit");
-			send (sock, buf, 100, 0);
-			recv (sock, &status, 100, 0);
-			if (status) {
-				printf("서버를 닫는 중..\n");
-				exit(0);
-			}
-			printf ("서버 닫기 실패\n");
-		}
+	printf ("업로드할 파일 : ");
+	scanf ("%s", fileName);       //파일 이름 입력
+	fgets (temp, MAXLINE, stdin); //버퍼에 남은 엔터 제거
+	fileHandle = open (fileName, O_RDONLY); // 파일 열기
+	if (fileHandle == -1) { //파일이 없다면
+		error_handling ("File doesn't exist.");
 	}
+		
+	// buf 에 fileName 을 저장한다.
+	strcpy (buf, fileName);
+			
+	/*	서버에 fileName 전송  */
+	send (sock, buf, 100, 0);
+
+	/*	stat 함수를 이용하여 파일의 정보를 추출하여 그 정보들을 imgInfo에 저장 */
+	struct stat imgInfo;
+	stat (fileName, &imgInfo);
+	imgSize = imgInfo.st_size;
+
+
+	/*	imgSize 전송 */
+	send (sock, &imgSize, sizeof(int), 0); // 파일을 전송하기 전에 imgSize를 먼저 전송
+	printf ("imgSize: %d\n", imgSize);
+
+			/* 
+				ssize_t sendfile (int out_fd, int in_fd, off_t *offset, size_t count);
+				out_fd 는 쓰여질 파일(소켓), in_fd 는 읽을 파일이다. 즉 in_fd 파일을 out_fd 파일로 복사한다.
+				offset이 NULL이 아니라면, offset은 in_fd에서 데이터를 읽기 시작할 시작점을 가리킨다. (즉 복사를 시작할 시점)
+				NULL인 경우 in_fd의 처음부터 읽게 된다.
+				count 는 복사할 바이트의 수이다.
+				성공적으로 복사하였으면 out_fd 에 써넣은 바이트의 수를 반환한다.
+			
+			 */
+	int sent = sendfile (sock, fileHandle, NULL, imgSize); // 파일 송신
+			
+
+	if (sent < imgSize) {
+		printf ("sent < imgSize\n");
+	}
+	else if (sent == imgSize) {
+		printf("sent == imgSize\n");
+	}
+	else {
+		printf("sent > imgSize\n");
+	}
+
 }
 
 int
