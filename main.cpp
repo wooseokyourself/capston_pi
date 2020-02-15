@@ -3,8 +3,6 @@
 #include "socket.hpp"
 #include "vision.hpp"
 
-string ImageProcessing ();
-
 int
 main (void) {
     while (true) {
