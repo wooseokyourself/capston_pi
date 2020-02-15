@@ -33,7 +33,7 @@ tcp_connect (int af, char *servip, unsigned short port) {
 	성공시 true 리턴, 실패시 false 리턴
 */
 bool
-SendImage (string fileName) {
+SendImage (struct protocol data) { // 원래 인자는 string fileName 이었음.
 	/*	소켓 프로그래밍 셋팅 */
 	struct sockaddr_in server;
 	int sock;

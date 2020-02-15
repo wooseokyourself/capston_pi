@@ -1,13 +1,14 @@
 #include <string>
 
+#include "data.hpp"
 #include "socket.hpp"
 #include "vision.hpp"
 
 int
 main (void) {
     while (true) {
-        string fileName = ImageProcessing ();
-        SendImage (fileName);
+        struct protocol data = ImageProcessing ();
+        SendImage (data);
     }
     return 0;
 }

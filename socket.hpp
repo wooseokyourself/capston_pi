@@ -12,6 +12,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "protocol.hpp"
+
 #define MAXLINE 511
 #define MAXBUF	1024
 
@@ -25,4 +27,4 @@ int
 tcp_connect (int, char *, unsigned short);
 
 bool
-SendImage (string);
+SendImage (struct protocol);
