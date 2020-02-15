@@ -3,6 +3,7 @@
 */
 
 #include <stdint.h>
+#include <vector>
 
 #define PROTO_BUFSIZE sizeof(uint64_t)
 
@@ -10,7 +11,7 @@ using namespace std;
 
 struct protocol {
     size_t bufSize;
-    size_t prevBuf;
-    size_t currBuf;
+    vector<uchar> prevBuf;
+    vector<uchar> currBuf;
     uint32_t diffValue; // abs(prevImg - currImg)
 };

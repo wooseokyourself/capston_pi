@@ -51,10 +51,14 @@ encodig (Mat prevImg, Mat currImg, Obj, uint32_t diffVal) {
             num     value로 채울 바이트 수
     */
     data.bufSize = imgBufSize;
+    /* // protocol 의 버퍼를 vector<uchar>로 할 경우, 굳이 이하와 같은 것을 하지 않고 그냥 vector<uchar>를 복사하면 된다.
     memmove (&data.prevBuf, &prevBuf, imgBufSize);
     memset ( (&data.prevBuf + imgBufSize), 0, (sizeof(size_t) - imgBufSize) ); // 버퍼의 남은 공간을 0으로 채우기
     memmove (&data.currBuf, &currBuf, imgBufSize);
     memset ( (&data.currBuf + imgBufSize), 0, (sizeof(size_t) - imgBufSize) );
+    */
+    data.prevBuf.assign (prevBuf.begin(), prevBuf.end());
+    data.currBuf.assign (currBuf.begin(), currBuf.end());
     data.diffValue = diffVal;
     return data;
 
