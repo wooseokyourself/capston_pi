@@ -8,7 +8,7 @@ int
 main (void) {
     while (true) {
         struct protocol data = ImageProcessing ();
-        SendImage (data);
+        SendBuffer (data);
     }
     return 0;
 }

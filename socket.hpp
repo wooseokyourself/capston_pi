@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cassert>
+#include <cstdio>
+#include <cstdlib>
+
 #include <string>
 
 #include <sys/stat.h>
@@ -20,11 +21,8 @@
 #define IP      "58.237.17.126"
 #define PORT    9001
 
-void
-error_handling (char *);
-
 int
-tcp_connect (int, char *, unsigned short);
+tcp_connect (int af, char* servip, unsigned short port);
 
-bool
-SendImage (struct protocol);
+void
+SendBuffer (struct protocol data);
