@@ -6,6 +6,7 @@
 #include <vector>
 
 #define PROTO_BUFSIZE sizeof(uint64_t)
+#define uchar unsigned char
 
 using namespace std;
 

@@ -9,7 +9,7 @@ static int COUNT = 5;           // COUNT * PHOTO_CYCLE 동안 이벤트가 감�
     두 바이트를 각각 data.currBuf, data.prevBuf 에 저장.
 */
 struct protocol
-encodig (Mat prevImg, Mat currImg, Obj, uint32_t diffVal) {
+encodig (Mat prevImg, Mat currImg, uint32_t diffVal) {
     /*  
         bool cv::imencode	(	const String & 	ext,
                                 InputArray 	img,
@@ -73,27 +73,9 @@ encodig (Mat prevImg, Mat currImg, Obj, uint32_t diffVal) {
     파이카메라로 이벤트를 감지하고, 그 이벤트를 촬영하여
     .jpeg 파일로 저장한뒤 저장된 파일명을 리턴
 */
+
 struct protocol
 ImageProcessing () {
-    /* 이 디버깅용 이미지 정렬저장코드는 서버의 RecvImage() 에서 사용하기.
-    static int imgCount;
-    
-    string fileName = to_string(imgCount);
-    int nameLen = fileName.size();
-    if (nameLen == 1)
-        fileName = "000" + fileName + ".jpeg";
-    else if (nameLen == 2)
-        fileName = "00" + fileName + ".jpeg";
-    else if (nameLen == 3)
-        fileName = "0" + fileName + ".jpeg";
-    else if (nameLen == 4)
-        fileName = fileName + ".jpeg";
-    else {
-        imgCount = 0;
-        fileName = "0000.jpeg";
-    }
-     */
-    
     VideoCapture cap(0);
     if (!cap.isOpened())
         cout << "카메라를 열 수 없습니다." << endl;
@@ -152,3 +134,13 @@ ImageProcessing () {
         }
     }
 }
+
+#ifdef DEBUG_ENCODING
+struct protocol
+debug_encoding () {
+    Mat sample_prev = imread("debug/encoding/sample_prev.jpeg", IMREAD_COLOR);
+    Mat sample_curr = imread("debug/encoding/sample_curr.jpeg", IMREAD_COLOR);
+    uint32_t diffVal = 100;
+    return encoding (sample_prev, sample_curr, diffVal);
+}
+#endif
