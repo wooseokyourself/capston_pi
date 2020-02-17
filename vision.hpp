@@ -1,3 +1,6 @@
+#ifndef VISION
+#define VISION
+
 #include <cstdio>
 #include <ctime>
 #include <cstring>
@@ -16,11 +19,13 @@
 
 #include "protocol.hpp"
 
+#define ASSERT assert
+
 using namespace std;
 using namespace cv;
 
 struct protocol
-encodig (Mat prevImg, Mat currImg, uint32_t diffVal);
+encoding (Mat prevImg, Mat currImg, uint32_t diffVal);
 
 struct protocol
 ImageProcessing ();
@@ -28,4 +33,6 @@ ImageProcessing ();
 #ifdef DEBUG_ENCODING
 struct protocol
 debug_encoding ();
+#endif
+
 #endif

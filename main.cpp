@@ -14,7 +14,9 @@ main (void) {
 #ifdef DEBUG_ENCODING
     struct protocol data = debug_encoding ();
     SendBuffer (data);
+	return 0;
 #endif
+
     while (true) {
         struct protocol data = ImageProcessing ();
         SendBuffer (data);

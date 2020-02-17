@@ -9,7 +9,7 @@ static int COUNT = 5;           // COUNT * PHOTO_CYCLE 동안 이벤트가 감�
     두 바이트를 각각 data.currBuf, data.prevBuf 에 저장.
 */
 struct protocol
-encodig (Mat prevImg, Mat currImg, uint32_t diffVal) {
+encoding (Mat prevImg, Mat currImg, uint32_t diffVal) {
     /*  
         bool cv::imencode	(	const String & 	ext,
                                 InputArray 	img,
@@ -24,12 +24,15 @@ encodig (Mat prevImg, Mat currImg, uint32_t diffVal) {
     */
 
     vector<uchar> prevBuf, currBuf; // 인코딩된 이미지의 버퍼를 저장
-    imencode (".jpeg", prevImg, prevBuf, IMWRITE_JPEG_QUALITY);
-    imencode (".jpeg", currImg, currBuf, IMWRITE_JPEG_QUALITY);
+	vector<int> params;
+	params.push_back (IMWRITE_JPEG_QUALITY);
+	params.push_back (95);
+    imencode (".jpeg", prevImg, prevBuf, params);
+    imencode (".jpeg", currImg, currBuf, params);
 
     size_t imgBufSize = prevBuf.size(); // 이미지의 버퍼사이즈
-    
-    ASSERT (imgBufSize <= PROTO_BUFSIZE);
+	printf("imgBufSize = %d\n", imgBufSize);
+    //ASSERT (imgBufSize <= PROTO_BUFSIZE);
 
     struct protocol data;
     /*  
@@ -86,7 +89,7 @@ ImageProcessing () {
     Mat currRGB, currGRAY;
     
     /*  사진 촬영 및 그레이스케일 변환 */
-    cap >> currRGB.currImg;
+    cap >> currRGB;
     cvtColor(currRGB, currGRAY, COLOR_RGB2GRAY);
     
     int rows = currGRAY.rows, cols = currGRAY.cols;

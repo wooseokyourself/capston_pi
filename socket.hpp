@@ -1,8 +1,12 @@
+#ifndef SOCKET
+#define SOCKET
+
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
 
 #include <string>
+#include <string.h>
 
 #include <sys/stat.h>
 #include <sys/socket.h>
@@ -15,6 +19,8 @@
 
 #include "protocol.hpp"
 
+#define ASSERT assert
+
 #define MAXLINE 511
 #define MAXBUF	1024
 
@@ -26,3 +32,5 @@ tcp_connect (int af, char* servip, unsigned short port);
 
 void
 SendBuffer (struct protocol data);
+
+#endif

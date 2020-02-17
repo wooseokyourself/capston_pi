@@ -22,7 +22,6 @@ tcp_connect (int af, char* servip, unsigned short port) {
 
 /*
 	struct protocol data 파일을 입력받은 뒤 소켓을 생성하여 서버로 보내기.
-	성공시 true 리턴, 실패시 false 리턴
 */
 void
 SendBuffer (struct protocol data) { // 원래 인자는 string fileName 이었음.
@@ -43,8 +42,7 @@ SendBuffer (struct protocol data) { // 원래 인자는 string fileName 이었�
 	printf ("dataSize: %d\n", dataSize);
 	
 	/*	서버에 struct protocol data 전송 */
-	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
+	//	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
+	int sent = send (sock, (struct protocol*) &data, sizeof(data), 0);
 	ASSERT (sent == dataSize);
-
-	return true;
 }
