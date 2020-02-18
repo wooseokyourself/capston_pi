@@ -5,8 +5,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include <string>
-#include <string.h>
+#include <cstring>
 
 #include <sys/stat.h>
 #include <sys/socket.h>

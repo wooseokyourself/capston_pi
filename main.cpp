@@ -11,7 +11,7 @@
 
 int
 main (void) {
-#ifdef DEBUG_ENCODING
+#ifdef DEBUG
     struct protocol data = debug_encoding ();
     SendBuffer (data);
 	return 0;

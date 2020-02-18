@@ -24,7 +24,7 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	struct protocol data 파일을 입력받은 뒤 소켓을 생성하여 서버로 보내기.
 */
 void
-SendBuffer (struct protocol data) { // 원래 인자는 string fileName 이었음.
+SendBuffer (struct protocol data) {
 	/*	소켓 프로그래밍 셋팅 */
 	struct sockaddr_in server;
 	int sock;

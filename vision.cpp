@@ -62,10 +62,12 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal) {
     data.prevBuf.assign (prevBuf.begin(), prevBuf.end());
     data.currBuf.assign (currBuf.begin(), currBuf.end());
     data.diffValue = diffVal;
+#ifdef DEBUG
     printf("visio.cpp/encoding() after encoding.. \n");
     printf(" >> imgBufSize = %d\n", data.BufSize);
     printf(" >> prevBufSize = %d\n", data.prevBuf.size());
     printf(" >> currBufSize = %d\n", data.currBuf.size());
+#endif
     return data;
 
     /*
@@ -141,7 +143,7 @@ ImageProcessing () {
     }
 }
 
-#ifdef DEBUG_ENCODING
+#ifdef DEBUG
 struct protocol
 debug_encoding () {
     Mat sample_prev = imread("debug/encoding/sample_prev.jpeg", IMREAD_COLOR);

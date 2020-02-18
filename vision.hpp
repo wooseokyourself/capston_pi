@@ -30,7 +30,7 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal);
 struct protocol
 ImageProcessing ();
 
-#ifdef DEBUG_ENCODING
+#ifdef DEBUG
 struct protocol
 debug_encoding ();
 #endif
