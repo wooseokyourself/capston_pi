@@ -64,7 +64,7 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal) {
     data.diffValue = diffVal;
 #ifdef DEBUG
     printf("visio.cpp/encoding() after encoding.. \n");
-    printf(" >> imgBufSize = %d\n", data.BufSize);
+    printf(" >> imgBufSize = %d\n", data.bufSize);
     printf(" >> prevBufSize = %d\n", data.prevBuf.size());
     printf(" >> currBufSize = %d\n", data.currBuf.size());
 #endif
