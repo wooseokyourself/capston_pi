@@ -85,8 +85,7 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal) {
 struct protocol
 ImageProcessing () {
     VideoCapture cap(0);
-    if (!cap.isOpened())
-        cout << "카메라를 열 수 없습니다." << endl;
+    ASSERT (cap.isOpened() == true);
     
     clock_t timeStart, timeEnd, elapsedTime;
     uint32_t diffVal;
@@ -122,7 +121,9 @@ ImageProcessing () {
             }
         }
         diffVal = diffVal / (rows * cols);
-        cout << "이전 사진과의 차이값: " << diffVal << endl; // debug
+#ifdef DEBUG
+        printf ("Image compare, diffVal = %d\n", diffVal);
+#endif
         
         /*  이미지에 변화가 있다면 현재 data를 리턴 */
         if (THOLD < diffVal) {
@@ -143,7 +144,7 @@ ImageProcessing () {
     }
 }
 
-#ifdef DEBUG
+#ifdef DEBUG_NOCAM
 struct protocol
 debug_encoding () {
     Mat sample_prev = imread("debug/encoding/sample_prev.jpeg", IMREAD_COLOR);

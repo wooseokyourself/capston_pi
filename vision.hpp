@@ -6,7 +6,6 @@
 #include <cstring>
 #include <cassert>
 
-#include <iostream>
 #include <vector>
 #include <unistd.h>
 #include <vector>
@@ -30,7 +29,7 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal);
 struct protocol
 ImageProcessing ();
 
-#ifdef DEBUG
+#ifdef DEBUG_NOCAM
 struct protocol
 debug_encoding ();
 #endif

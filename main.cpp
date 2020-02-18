@@ -11,7 +11,7 @@
 
 int
 main (void) {
-#ifdef DEBUG
+#ifdef DEBUG_NOCAM
     struct protocol data = debug_encoding ();
     SendBuffer (data);
 	return 0;
