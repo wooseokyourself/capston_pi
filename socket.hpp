@@ -9,7 +9,7 @@
 
 #include <sys/stat.h>
 #include <sys/socket.h>
-#include <sys/sendfile.h>
+#include <sys/types.h>
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
