@@ -31,7 +31,6 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal) {
     imencode (".jpeg", currImg, currBuf, params);
 
     size_t imgBufSize = prevBuf.size(); // 이미지의 버퍼사이즈
-	printf("imgBufSize = %d\n", imgBufSize);
     //ASSERT (imgBufSize <= PROTO_BUFSIZE);
 
     struct protocol data;
@@ -63,6 +62,10 @@ encoding (Mat prevImg, Mat currImg, uint32_t diffVal) {
     data.prevBuf.assign (prevBuf.begin(), prevBuf.end());
     data.currBuf.assign (currBuf.begin(), currBuf.end());
     data.diffValue = diffVal;
+    printf("visio.cpp/encoding() after encoding.. \n");
+    printf(" >> imgBufSize = %d\n", data.BufSize);
+    printf(" >> prevBufSize = %d\n", data.prevBuf.size());
+    printf(" >> currBufSize = %d\n", data.currBuf.size());
     return data;
 
     /*
