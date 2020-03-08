@@ -21,7 +21,7 @@
 #define ASSERT assert
 
 #define MAXLINE 511
-#define MAXBUF	1024
+#define MAXBUF	512
 
 #define IP      "58.237.17.126"
 #define PORT    9001
