@@ -10,7 +10,6 @@ printf ("encoding..\n");
     imencode (".jpeg", img, buf, params);
 
     struct protocol data;
-    data.bufSize = buf.size();
     data.buf.assign (buf.begin(), buf.end());
 
     return data;

@@ -34,6 +34,7 @@ SendBuffer (struct protocol data) {
 		exit(1);
 	}
 
+	int sent;
 	char buf[MAXBUF];
 
 	/*	서버에 dataSize 전송   // 이 dataSize는 실제로 받아서 사용하지도 않는데 왜 보내야 하는거지?
