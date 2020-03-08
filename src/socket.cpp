@@ -43,7 +43,7 @@ SendBuffer (struct protocol data) {
 	
 	/*	서버에 struct protocol data 전송 */
 	#ifdef DEBUG
-	printf ("struct protocol data 전송중...\n");
+	printf ("struct protocol data 전송중... %d\n", sizeof(data));
 	#endif
 	//	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
 	int sent = send (sock, (struct protocol*) &data, sizeof(data), 0);

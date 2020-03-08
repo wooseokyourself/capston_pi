@@ -2,6 +2,11 @@ TARGET = client.out
 TARGET_DEBUG = client_debug.out
 TARGET_DEBUG_NOCAM = client_debug_nocam.out
 
+update:
+	git add .
+	git commit -m "update"
+	git push -u mac master
+
 clean:
 	rm -f *.o
 	rm -f *.out
