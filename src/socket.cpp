@@ -35,8 +35,7 @@ SendBuffer (struct protocol data) {
 	}
 
 	char buf[MAXBUF];
-
-	/*	서버에 dataSize 전송 */  // 이 dataSize는 실제로 받아서 사용하지도 않는데 왜 보내야 하는거지?
+/*
 	size_t dataSize = sizeof(struct protocol);
 	#ifdef DEBUG
 	printf ("dataSize 전송중... 사이즈: %d\n", sizeof(dataSize));
@@ -46,9 +45,8 @@ SendBuffer (struct protocol data) {
 	printf ("struct protocol data 전송완료. 전송된 사이즈: %d\n", sent);
 	#endif
 
-	/*	서버에 data.bufSize 전송 */
 	#ifdef DEBUG
-	printf ("data.bufSize 전송중... 사이즈: %d\n", sizeof(data.bufSize));
+	printf ("data.bufSize 전송중... 전송할 사이즈: %d\n", sizeof(data.bufSize));
 	#endif
 	sent = send (sock, (size_t *) &data.bufSize, sizeof(data.bufSize), 0);
 	ASSERT (sent == sizeof (data.bufSize));
@@ -56,13 +54,29 @@ SendBuffer (struct protocol data) {
 	printf ("data.bufSize 전송완료. 전송된 사이즈: %d\n", sent);
 	#endif
 
-	/*	서버에 struct protocol data 전송 */
 	#ifdef DEBUG
-	printf ("struct protocol data 전송중... 사이즈: %d\n", sizeof(data));
+	printf ("struct protocol data 전송중... 전송할 사이즈: %d\n", sizeof(data));
 	#endif
 	sent = send (sock, (struct protocol*) &data, sizeof(data), 0);
 	ASSERT (sent == sizeof (struct protocol));
 	#ifdef DEBUG
 	printf ("struct protocol data 전송완료. 전송된 사이즈: %d\n", sent);
 	#endif
+	*/
+
+
+
+
+	/*	서버에 dataSize 전송  // 이 dataSize를 먼저 전송하는 것이 필요한 건지는 아직 모름.
+	size_t dataSize = sizeof(struct protocol);
+	send (sock, &dataSize, sizeof(dataSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
+	*/
+#ifdef DEBUG
+	printf ("dataSize: %d\n", dataSize);
+#endif
+	
+	/*	서버에 struct protocol data 전송 */
+	//	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
+	int sent = send (sock, (struct protocol*) &data, sizeof(data), 0);
+	ASSERT (sent == sizeof (struct protocol));
 }
