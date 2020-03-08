@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <ctime>
 #include <cassert>
+#include <string>
 
 #include <vector>
 #include <unistd.h>
