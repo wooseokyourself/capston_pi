@@ -25,10 +25,8 @@ main (void) {
     return 0;
 #else
     while (true) {
-        if (waitKey(10000) == -1) {
-            struct protocol data = ImageProcessing ();
-        }
-        else {
+        struct protocol data = ImageProcessing ();
+        if (waitKey(10000) != -1) {
             break;
         }
     }
