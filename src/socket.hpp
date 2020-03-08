@@ -24,7 +24,7 @@
 #define MAXBUF	512
 
 #define IP      "58.237.17.126"
-#define PORT    9001
+#define PORT    9051
 
 int
 tcp_connect (int af, char* servip, unsigned short port);
