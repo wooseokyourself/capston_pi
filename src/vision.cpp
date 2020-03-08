@@ -2,6 +2,7 @@
 
 struct protocol
 encoding (Mat img) {
+printf ("encoding..\n");
     vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
     vector<int> params;
     params.push_back (IMWRITE_JPEG_QUALITY);
