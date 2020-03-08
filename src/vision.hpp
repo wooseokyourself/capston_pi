@@ -3,7 +3,6 @@
 
 #include <cstdio>
 #include <ctime>
-#include <cstring>
 #include <cassert>
 
 #include <vector>
