@@ -36,9 +36,10 @@ SendBuffer (struct protocol data) {
 
 	char buf[MAXBUF];
 
-	/*	서버에 dataSize 전송 */ // 이 dataSize를 먼저 전송하는 것이 필요한 건지는 아직 모름.
+	/*	서버에 dataSize 전송  // 이 dataSize를 먼저 전송하는 것이 필요한 건지는 아직 모름.
 	size_t dataSize = sizeof(struct protocol);
 	send (sock, &dataSize, sizeof(dataSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
+	*/
 #ifdef DEBUG
 	printf ("dataSize: %d\n", dataSize);
 #endif
@@ -46,5 +47,5 @@ SendBuffer (struct protocol data) {
 	/*	서버에 struct protocol data 전송 */
 	//	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
 	int sent = send (sock, (struct protocol*) &data, sizeof(data), 0);
-	ASSERT (sent == dataSize);
+	ASSERT (sent == sizeof (struct protocol));
 }

@@ -13,11 +13,18 @@
 
 using namespace std;
 
+#ifdef DIFF_BASE
 struct protocol {
     size_t bufSize;
     vector<unsigned char> prevBuf;
     vector<unsigned char> currBuf;
     uint32_t diffValue; // abs(prevImg - currImg)
 };
+#else
+struct protocol {
+    size_t bufSize;
+    vector<unsigned char> buf;
+};
+#endif
 
 #endif

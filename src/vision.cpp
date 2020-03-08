@@ -1,9 +1,13 @@
 #include "vision.hpp"
 
+#ifdef DIFF_BASE
 static int PHOTO_CYCLE = 20000; // 2 secs
 static int THOLD = 50;
 static int COUNT = 5;           // COUNT * PHOTO_CYCLE 동안 이벤트가 감지되지 않으면 이미지 전송
+#endif
 
+
+#ifdef DIFF_BASE
 /*
     prevRGB, currRGB를 imencode()하여 버퍼에 쓴 뒤
     두 바이트를 각각 data.currBuf, data.prevBuf 에 저장.
@@ -143,6 +147,39 @@ ImageProcessing () {
         }
     }
 }
+#else
+struct protocol
+encoding (Mat img) {
+    vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
+    vector<int> params;
+    params.push_back (IMWRITE_JPEG_QUALITY);
+	params.push_back (95);
+    imencode ('.jpeg', img, buf, params);
+
+    size_t imgBufSize = buf.size(); // 이미지의 버퍼사이즈
+
+    struct protocol data;
+    data.bufSize = imgBufSize;
+    data.buf.assign (buf.begin(), buf.end());
+
+    return data;
+}
+
+struct protocol
+ImageProcessing () {
+    VideoCapture cap(0);
+    ASSERT (cap.isOpened() == true);
+    
+    clock_t timeStart, timeEnd, elapsedTime;
+    Mat imgRGB;
+
+    /* 사진 촬영 */
+    cap >> imgRGB;
+
+    return encoding (imgRGB);
+}
+#endif
+
 
 #ifdef DEBUG_NOCAM
 struct protocol

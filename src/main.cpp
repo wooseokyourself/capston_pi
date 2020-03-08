@@ -17,9 +17,21 @@ main (void) {
 	return 0;
 #endif
 
+#ifdef DIFF_BASE
     while (true) {
         struct protocol data = ImageProcessing ();
         SendBuffer (data);
     }
     return 0;
+#else
+    while (true) {
+        if (waitKey(10000) == -1) {
+            struct protocol data = ImageProcessing ();
+        }
+        else {
+            break;
+        }
+    }
+    return 0;
+#endif
 }
