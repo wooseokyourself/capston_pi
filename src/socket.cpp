@@ -68,7 +68,7 @@ SendBuffer (struct protocol data) {
 		sent += send (sock, &data.buf[i], sizeof(unsigned char), 0);
 	}*/
 
-	sent = send (sock, &data.buf[i], sizeof(bufSize), 0);
+	sent = send (sock, &data.buf[0], sizeof(bufSize), 0);
 
 	ASSERT (sent == data.buf.size() * sizeof(unsigned char));
 	#ifdef DEBUG
