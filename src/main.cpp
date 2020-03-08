@@ -11,19 +11,6 @@
 
 int
 main (void) {
-#ifdef DEBUG_NOCAM
-    struct protocol data = debug_encoding ();
-    SendBuffer (data);
-	return 0;
-#endif
-
-#ifdef DIFF_BASE
-    while (true) {
-        struct protocol data = ImageProcessing ();
-        SendBuffer (data);
-    }
-    return 0;
-#else
     while (true) {
         struct protocol data = ImageProcessing ();
         SendBuffer (data);
@@ -32,5 +19,4 @@ main (void) {
         }
     }
     return 0;
-#endif
 }

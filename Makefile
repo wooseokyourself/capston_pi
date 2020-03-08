@@ -19,4 +19,4 @@ $(TARGET_DEBUG):
 	g++ -std=c++11 -DDEBUG -w src/main.cpp src/vision.cpp src/socket.cpp `pkg-config --cflags --libs opencv4` -o $(TARGET_DEBUG)
 
 $(TARGET_DEBUG_NOCAM):
-	g++ -std=c++11 -DDEBUG -DDEBUG_NOCAM -w src/main.cpp src/vision.cpp src/socket.cpp `pkg-config --cflags --libs opencv4` -o $(TARGET_DEBUG_NOCAM)
+	g++ -std=c++11 -DDEBUG -DDEBUG_NOCAM -w debug/test_nocam_main.cpp src/vision.cpp src/socket.cpp `pkg-config --cflags --libs opencv4` -o $(TARGET_DEBUG_NOCAM)

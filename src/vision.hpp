@@ -2,9 +2,7 @@
 #define VISION
 
 #include <cstdio>
-#include <ctime>
 #include <cassert>
-#include <cstring>
 #include <unistd.h>
 
 #include <vector>
@@ -21,20 +19,11 @@
 using namespace std;
 using namespace cv;
 
-#ifdef DIFF_BASE
-struct protocol
-encoding (Mat prevImg, Mat currImg, uint32_t diffVal);
-
-struct protocol
-ImageProcessing ();
-#else
 struct protocol
 encoding (Mat img);
 
 struct protocol
 ImageProcessing ();
-#endif
-
 
 #ifdef DEBUG_NOCAM
 struct protocol
