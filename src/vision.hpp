@@ -4,14 +4,11 @@
 #include <cstdio>
 #include <ctime>
 #include <cassert>
-#include <string>
-
-#include <vector>
+#include <cstring>
 #include <unistd.h>
+
 #include <vector>
 
-#include <opencv2/opencv.hpp>
-#include <opencv2/core/mat.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
