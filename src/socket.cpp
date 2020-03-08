@@ -37,10 +37,10 @@ SendBuffer (struct protocol data) {
 	char buf[MAXBUF];
 
 	/*	서버에 dataSize 전송 */  // 이 dataSize는 실제로 받아서 사용하지도 않는데 왜 보내야 하는거지?
+	size_t dataSize = sizeof(struct protocol);
 	#ifdef DEBUG
 	printf ("dataSize 전송중... 사이즈: %d\n", sizeof(dataSize));
 	#endif
-	size_t dataSize = sizeof(struct protocol);
 	int sent = send (sock, &dataSize, sizeof(dataSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
 	#ifdef DEBUG
 	printf ("struct protocol data 전송완료. 전송된 사이즈: %d\n", sent);
