@@ -56,17 +56,7 @@ SendBuffer (struct protocol data) {
 	printf ("data.bufSize 전송완료. 전송된 사이즈: %d\n", sent);
 	#endif
 
-	/*	서버에 data.buf 전송 */
-	#ifdef DEBUG 
-	printf ("data.buf 전송중... 사이즈: %d\n", sizeof(unsigned char) * data.buf.size());
-	#endif
-	sent = send (sock, (unsigned char *) *data.buf.begin(), data.bufSize, 0);
-	ASSERT (sent == data.bufSize);
-	#ifdef DEBUG
-	printf ("data.buf 전송완료. 전송된 사이즈: %d\n", sent);
-	#endif
-
-	/*	서버에 struct protocol data 전송
+	/*	서버에 struct protocol data 전송 */
 	#ifdef DEBUG
 	printf ("struct protocol data 전송중... 사이즈: %d\n", sizeof(data));
 	#endif
@@ -75,5 +65,4 @@ SendBuffer (struct protocol data) {
 	#ifdef DEBUG
 	printf ("struct protocol data 전송완료. 전송된 사이즈: %d\n", sent);
 	#endif
-	*/
 }
