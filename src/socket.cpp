@@ -63,9 +63,13 @@ SendBuffer (struct protocol data) {
 	printf ("data.buf 전송중... 전송할 버퍼 사이즈: %d\n", data.buf.size() * sizeof(unsigned char));
 	#endif
 	sent = 0;
-	for (int i=0; i<data.buf.size(); ++i) {
+	/*
+	for (int i=0; i<data.buf.size(); i++) {
 		sent += send (sock, &data.buf[i], sizeof(unsigned char), 0);
-	}
+	}*/
+
+	sent = send (sock, &data.buf[i], sizeof(bufSize), 0);
+
 	ASSERT (sent == data.buf.size() * sizeof(unsigned char));
 	#ifdef DEBUG
 	printf ("data.buf 전송완료.\n");
