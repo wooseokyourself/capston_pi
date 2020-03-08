@@ -71,9 +71,6 @@ SendBuffer (struct protocol data) {
 	size_t dataSize = sizeof(struct protocol);
 	send (sock, &dataSize, sizeof(dataSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
 	*/
-#ifdef DEBUG
-	printf ("dataSize: %d\n", dataSize);
-#endif
 	
 	/*	서버에 struct protocol data 전송 */
 	//	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
