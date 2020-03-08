@@ -26,6 +26,7 @@ main (void) {
 #else
     while (true) {
         struct protocol data = ImageProcessing ();
+        SendBuffer (data);
         if (waitKey(10000) != -1) {
             break;
         }
