@@ -58,7 +58,7 @@ SendBuffer (struct protocol data) {
 
 	/*	서버에 data.buf 전송 */
 	for (int i=0; i<data.bufSize; ++i) {
-		send (sock, data.buf[i], sizeof(unsigned char), 0);
+		send (sock, &data.buf[i], sizeof(unsigned char), 0);
 	}
 
 	/*	서버에 struct protocol data 전송 
