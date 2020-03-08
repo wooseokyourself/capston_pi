@@ -154,7 +154,7 @@ encoding (Mat img) {
     vector<int> params;
     params.push_back (IMWRITE_JPEG_QUALITY);
 	params.push_back (95);
-    imencode ('.jpeg', img, buf, params);
+    imencode ('.jpg', img, buf, params);
 
     size_t imgBufSize = buf.size(); // 이미지의 버퍼사이즈
 
