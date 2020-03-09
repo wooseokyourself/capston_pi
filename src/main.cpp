@@ -3,11 +3,6 @@
 #include "socket.hpp"
 #include "vision.hpp"
 
-/*
-    DEBUG_MODE
-        DEBUG_MODE
-*/
-
 int
 main (void) {
     while (true) {

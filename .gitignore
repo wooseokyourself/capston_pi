@@ -1,4 +1,2 @@
 *.out
-temp.txt
 .vscode
-images/*

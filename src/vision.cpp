@@ -24,14 +24,3 @@ ImageProcessing () {
 
     return encoding (img);
 }
-
-
-#ifdef DEBUG_NOCAM
-std::vector<unsigned char>
-debug_encoding () {
-    Mat sample_prev = imread("../debug/encoding/sample_prev.jpeg", IMREAD_COLOR);
-    Mat sample_curr = imread("../debug/encoding/sample_curr.jpeg", IMREAD_COLOR);
-    uint32_t diffVal = 100;
-    return encoding (sample_prev, sample_curr, diffVal);
-}
-#endif

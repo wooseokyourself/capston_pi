@@ -22,9 +22,4 @@ encoding (Mat img);
 std::vector<unsigned char>
 ImageProcessing ();
 
-#ifdef DEBUG_NOCAM
-std::vector<unsigned char>
-debug_encoding ();
-#endif
-
 #endif
