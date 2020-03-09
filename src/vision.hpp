@@ -17,7 +17,6 @@
 
 #define ASSERT assert
 
-using namespace std;
 using namespace cv;
 
 std::vector<unsigned char>

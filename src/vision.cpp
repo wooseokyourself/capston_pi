@@ -15,7 +15,7 @@ encoding (Mat img) {
             params	Format-specific parameters. See cv::imwrite and cv::ImwriteFlags.
     */
 
-    std::vector<uchar> buf // 인코딩된 이미지의 버퍼를 저장
+    std::vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
 	std::vector<int> params;
 	params.push_back (IMWRITE_JPEG_QUALITY);
 	params.push_back (95);
