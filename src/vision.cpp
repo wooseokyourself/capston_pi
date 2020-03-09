@@ -2,7 +2,7 @@
 
 std::vector<unsigned char>
 encoding (Mat img) {
-printf ("encoding..\n");
+    printf ("encoding..\n");
     vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
     vector<int> params;
     params.push_back (IMWRITE_JPEG_QUALITY);
@@ -12,7 +12,7 @@ printf ("encoding..\n");
     std::vector<unsigned char> vec;
     vec.assign (buf.begin(), buf.end());
 
-    return data;
+    return vec;
 }
 
 std::vector<unsigned char>
