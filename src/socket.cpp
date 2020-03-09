@@ -19,7 +19,6 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	return s;
 }
 
-
 /*
 	struct protocol data 파일을 입력받은 뒤 소켓을 생성하여 서버로 보내기.
 */
@@ -35,32 +34,15 @@ SendBuffer (std::vector<unsigned char> vec) {
 	}
 
 	int sent;
-	char buf[MAXBUFSIZE];
 
 	/*	서버에 vec.size() 전송 */
 	size_t bufSize = vec.size();
-	#ifdef DEBUG
-	printf ("vec.size() 전송중... 전송할 버퍼 사이즈: %d\n", sizeof(bufSize));
-	#endif
 	sent = send (sock, (size_t *) &bufSize, sizeof(bufSize), 0);
 	ASSERT (sent == sizeof (vec.size()));
 
 	/*	서버에 vec 전송 */
-	#ifdef DEBUG
-	printf ("vec 전송중... 전송할 버퍼 사이즈: %d\n", vec.size() * sizeof(unsigned char));
-	#endif
 	sent = 0;
-	
-	
-	for (int i=0; i<vec.size(); i++) {
+	for (int i=0; i<vec.size(); i++)
 		sent += send (sock, &vec[i], sizeof(unsigned char), 0);
-		// printf ("[%d] send Value: %d\n", i, data.buf[i]);
-	}
-
-	// sent = send (sock, &data.buf[0], bufSize, 0);
-
 	ASSERT (sent == vec.size() * sizeof(unsigned char));
-	#ifdef DEBUG
-	printf ("data.buf 전송완료.\n");
-	#endif
 }

@@ -2,9 +2,8 @@
 
 std::vector<unsigned char>
 encoding (Mat img) {
-    printf ("encoding..\n");
-    vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
-    vector<int> params;
+    std::vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
+    std::vector<int> params;
     params.push_back (IMWRITE_JPEG_QUALITY);
 	params.push_back (95);
     imencode (".jpeg", img, buf, params);
@@ -21,8 +20,6 @@ ImageProcessing () {
     ASSERT (cap.isOpened() == true);
 
     Mat img;
-
-    /* 사진 촬영 */
     cap >> img;
 
     return encoding (img);

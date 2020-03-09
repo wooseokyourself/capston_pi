@@ -5,7 +5,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include <cstring>
+#include <vector>
 
 #include <sys/stat.h>
 #include <sys/socket.h>
@@ -16,12 +16,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "protocol.hpp"
-
 #define ASSERT assert
-
-#define MAXLINE 511
-#define MAXBUFSIZE	512
 
 #define IP      "58.237.17.126"
 #define PORT    9051

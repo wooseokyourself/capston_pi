@@ -12,11 +12,8 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 
-#include "protocol.hpp"
-
 #define ASSERT assert
 
-using namespace std;
 using namespace cv;
 
 std::vector<unsigned char>
