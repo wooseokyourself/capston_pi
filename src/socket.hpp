@@ -16,8 +16,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "protocol.hpp"
-
 #define ASSERT assert
 
 #define MAXLINE 511
