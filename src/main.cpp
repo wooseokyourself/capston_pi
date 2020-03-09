@@ -1,4 +1,5 @@
 #include <string>
+#include <unistd.h>
 
 #include "socket.hpp"
 #include "vision.hpp"
@@ -10,15 +11,10 @@
 
 int
 main (void) {
-#ifdef DEBUG_NOCAM
-    struct protocol data = debug_encoding ();
-    SendBuffer (data);
-	return 0;
-#endif
-
     while (true) {
         struct protocol data = ImageProcessing ();
         SendBuffer (data);
+        sleep (10);
     }
     return 0;
 }

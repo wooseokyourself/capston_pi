@@ -2,7 +2,6 @@
 #define VISION
 
 #include <cstdio>
-#include <ctime>
 #include <cstring>
 #include <cassert>
 
@@ -21,15 +20,10 @@
 using namespace std;
 using namespace cv;
 
-struct protocol
-encoding (Mat prevImg, Mat currImg, uint32_t diffVal);
+std::vector<unsigned char>
+encoding (Mat img);
 
-struct protocol
+std::vector<unsigned char>
 ImageProcessing ();
-
-#ifdef DEBUG_NOCAM
-struct protocol
-debug_encoding ();
-#endif
 
 #endif
