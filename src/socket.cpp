@@ -8,7 +8,7 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	if ((s = socket(af, SOCK_STREAM, 0)) < 0)
 		return -1;
 	// 채팅 서버의 소켓주소 구조체 servaddr 초기화
-	memset ((char *)&servaddr, 0, sizeof(servaddr));
+	memset (&servaddr, 0, sizeof(servaddr));
 	servaddr.sin_family = af;
 	inet_pton (AF_INET, servip, &servaddr.sin_addr);
 	servaddr.sin_port = htons(port);
