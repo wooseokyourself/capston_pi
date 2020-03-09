@@ -37,9 +37,9 @@ SendBuffer (std::vector<unsigned char> vec) {
 	int sent;
 
 	/*	서버에 vec.size() 전송 */
-	size_t vecSize = sizeof(vec.size());
-	sent = send (sock, &vecSize, sizeof(vecSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
-	ASSERT (sent == sizeof(vecSize));
+	size_t bufSize = vec.size();
+	sent = send (sock, (size_t *) &bufSize, sizeof(bufSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
+	ASSERT (sent == sizeof(vec.size()));
 
 	/*	서버에 vec 전송 */
 	sent = 0;
