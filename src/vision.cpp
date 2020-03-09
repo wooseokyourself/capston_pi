@@ -1,6 +1,6 @@
 #include "vision.hpp"
 
-struct protocol
+std::vector<unsigned char>
 encoding (Mat img) {
 printf ("encoding..\n");
     vector<uchar> buf; // 인코딩된 이미지의 버퍼를 저장
@@ -9,13 +9,13 @@ printf ("encoding..\n");
 	params.push_back (95);
     imencode (".jpeg", img, buf, params);
 
-    struct protocol data;
-    data.buf.assign (buf.begin(), buf.end());
+    std::vector<unsigned char> vec;
+    vec.assign (buf.begin(), buf.end());
 
     return data;
 }
 
-struct protocol
+std::vector<unsigned char>
 ImageProcessing () {
     VideoCapture cap(0);
     ASSERT (cap.isOpened() == true);
@@ -30,7 +30,7 @@ ImageProcessing () {
 
 
 #ifdef DEBUG_NOCAM
-struct protocol
+std::vector<unsigned char>
 debug_encoding () {
     Mat sample_prev = imread("../debug/encoding/sample_prev.jpeg", IMREAD_COLOR);
     Mat sample_curr = imread("../debug/encoding/sample_curr.jpeg", IMREAD_COLOR);

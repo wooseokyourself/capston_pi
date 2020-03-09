@@ -19,14 +19,14 @@
 using namespace std;
 using namespace cv;
 
-struct protocol
+std::vector<unsigned char>
 encoding (Mat img);
 
-struct protocol
+std::vector<unsigned char>
 ImageProcessing ();
 
 #ifdef DEBUG_NOCAM
-struct protocol
+std::vector<unsigned char>
 debug_encoding ();
 #endif
 

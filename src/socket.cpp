@@ -24,7 +24,7 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	struct protocol data 파일을 입력받은 뒤 소켓을 생성하여 서버로 보내기.
 */
 void
-SendBuffer (struct protocol data) {
+SendBuffer (std::vector<unsigned char> vec) {
 	/*	소켓 프로그래밍 셋팅 */
 	struct sockaddr_in server;
 	int sock;
@@ -37,29 +37,29 @@ SendBuffer (struct protocol data) {
 	int sent;
 	char buf[MAXBUFSIZE];
 
-	/*	서버에 data.buf.size() 전송 */
-	size_t bufSize = data.buf.size();
+	/*	서버에 vec.size() 전송 */
+	size_t bufSize = vec.size();
 	#ifdef DEBUG
-	printf ("data.bufSize 전송중... 전송할 버퍼 사이즈: %d\n", sizeof(bufSize));
+	printf ("vec.size() 전송중... 전송할 버퍼 사이즈: %d\n", sizeof(bufSize));
 	#endif
 	sent = send (sock, (size_t *) &bufSize, sizeof(bufSize), 0);
-	ASSERT (sent == sizeof (data.buf.size()));
+	ASSERT (sent == sizeof (vec.size()));
 
-	/*	서버에 data.buf 전송 */
+	/*	서버에 vec 전송 */
 	#ifdef DEBUG
-	printf ("data.buf 전송중... 전송할 버퍼 사이즈: %d\n", data.buf.size() * sizeof(unsigned char));
+	printf ("vec 전송중... 전송할 버퍼 사이즈: %d\n", vec.size() * sizeof(unsigned char));
 	#endif
 	sent = 0;
 	
 	
-	for (int i=0; i<data.buf.size(); i++) {
-		sent += send (sock, &data.buf[i], sizeof(unsigned char), 0);
+	for (int i=0; i<vec.size(); i++) {
+		sent += send (sock, &vec[i], sizeof(unsigned char), 0);
 		// printf ("[%d] send Value: %d\n", i, data.buf[i]);
 	}
 
 	// sent = send (sock, &data.buf[0], bufSize, 0);
 
-	ASSERT (sent == data.buf.size() * sizeof(unsigned char));
+	ASSERT (sent == vec.size() * sizeof(unsigned char));
 	#ifdef DEBUG
 	printf ("data.buf 전송완료.\n");
 	#endif

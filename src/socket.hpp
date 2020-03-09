@@ -30,6 +30,6 @@ int
 tcp_connect (int af, char* servip, unsigned short port);
 
 void
-SendBuffer (struct protocol data);
+SendBuffer (std::vector<unsigned char> vec);
 
 #endif
