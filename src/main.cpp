@@ -1,6 +1,5 @@
 #include <string>
 
-#include "protocol.hpp"
 #include "socket.hpp"
 #include "vision.hpp"
 
