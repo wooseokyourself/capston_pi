@@ -12,8 +12,8 @@
 int
 main (void) {
     while (true) {
-        struct protocol data = ImageProcessing ();
-        SendBuffer (data);
+        std::vector<unsigned char> vec = ImageProcessing ();
+        SendBuffer (vec);
         sleep (10);
     }
     return 0;
