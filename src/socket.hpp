@@ -4,9 +4,8 @@
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
 
-#include <vector>
+#include <cstring>
 
 #include <sys/stat.h>
 #include <sys/socket.h>
@@ -17,15 +16,20 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "protocol.hpp"
+
 #define ASSERT assert
 
+#define MAXLINE 511
+#define MAXBUF	1024
+
 #define IP      "58.237.17.126"
-#define PORT    9051
+#define PORT    9001
 
 int
 tcp_connect (int af, char* servip, unsigned short port);
 
 void
-SendBuffer (std::vector<unsigned char> vec);
+SendBuffer (struct protocol data);
 
 #endif

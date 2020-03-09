@@ -2,24 +2,36 @@
 #define VISION
 
 #include <cstdio>
+#include <ctime>
+#include <cstring>
 #include <cassert>
-#include <unistd.h>
 
 #include <vector>
+#include <unistd.h>
+#include <vector>
 
+#include <opencv2/core/mat.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 
+#include "protocol.hpp"
+
 #define ASSERT assert
 
+using namespace std;
 using namespace cv;
 
-std::vector<unsigned char>
-encoding (Mat img);
+struct protocol
+encoding (Mat prevImg, Mat currImg, uint32_t diffVal);
 
-std::vector<unsigned char>
+struct protocol
 ImageProcessing ();
+
+#ifdef DEBUG_NOCAM
+struct protocol
+debug_encoding ();
+#endif
 
 #endif

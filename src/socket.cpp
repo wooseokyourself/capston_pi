@@ -8,7 +8,7 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	if ((s = socket(af, SOCK_STREAM, 0)) < 0)
 		return -1;
 	// 채팅 서버의 소켓주소 구조체 servaddr 초기화
-	memset (&servaddr, 0, sizeof(servaddr));
+	bzero ((char *)&servaddr, sizeof(servaddr));
 	servaddr.sin_family = af;
 	inet_pton (AF_INET, servip, &servaddr.sin_addr);
 	servaddr.sin_port = htons(port);
@@ -19,11 +19,12 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	return s;
 }
 
+
 /*
 	struct protocol data 파일을 입력받은 뒤 소켓을 생성하여 서버로 보내기.
 */
 void
-SendBuffer (std::vector<unsigned char> vec) {
+SendBuffer (struct protocol data) {
 	/*	소켓 프로그래밍 셋팅 */
 	struct sockaddr_in server;
 	int sock;
@@ -33,16 +34,17 @@ SendBuffer (std::vector<unsigned char> vec) {
 		exit(1);
 	}
 
-	int sent;
+	char buf[MAXBUF];
 
-	/*	서버에 vec.size() 전송 */
-	size_t bufSize = vec.size();
-	sent = send (sock, (size_t *) &bufSize, sizeof(bufSize), 0);
-	ASSERT (sent == sizeof (vec.size()));
-
-	/*	서버에 vec 전송 */
-	sent = 0;
-	for (int i=0; i<vec.size(); i++)
-		sent += send (sock, &vec[i], sizeof(unsigned char), 0);
-	ASSERT (sent == vec.size() * sizeof(unsigned char));
+	/*	서버에 dataSize 전송 */ // 이 dataSize를 먼저 전송하는 것이 필요한 건지는 아직 모름.
+	size_t dataSize = sizeof(struct protocol);
+	send (sock, &dataSize, sizeof(dataSize), 0); // 구조체를 전송하기 전에 dataSize를 먼저 전송
+#ifdef DEBUG
+	printf ("dataSize: %d\n", dataSize);
+#endif
+	
+	/*	서버에 struct protocol data 전송 */
+	//	int sent = sendfile (sock, (struct protocol*) &data, sizeof(data));
+	int sent = send (sock, (struct protocol*) &data, sizeof(data), 0);
+	ASSERT (sent == dataSize);
 }

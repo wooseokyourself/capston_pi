@@ -1,16 +1,25 @@
 #include <string>
 
+#include "protocol.hpp"
 #include "socket.hpp"
 #include "vision.hpp"
 
+/*
+    DEBUG_MODE
+        DEBUG_MODE
+*/
+
 int
 main (void) {
+#ifdef DEBUG_NOCAM
+    struct protocol data = debug_encoding ();
+    SendBuffer (data);
+	return 0;
+#endif
+
     while (true) {
-        std::vector<unsigned char> vec = ImageProcessing ();
-        SendBuffer (vec);
-        if (waitKey(10000) != -1) {
-            break;
-        }
+        struct protocol data = ImageProcessing ();
+        SendBuffer (data);
     }
     return 0;
 }
