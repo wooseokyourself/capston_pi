@@ -7,11 +7,11 @@ main (int argc, char* argv[]) {
         printf ("./client.out <IP address> <PORT>\n");
         return 0;
     }
-    Client::IP = argv[1];
-    Client::PORT = (unsigned short) strtoul(argv[2], NULL, 0);
+    char* IP = argv[1];
+    unsigned short PORT = (unsigned short) strtoul(argv[2], NULL, 0);
     while (true) {
         std::vector<unsigned char> vec = ImageProcessing ();
-        SendBuffer (vec);
+        SendBuffer (IP, PORT, vec);
         sleep (10);
     }
     return 0;

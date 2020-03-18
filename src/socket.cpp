@@ -24,11 +24,11 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	struct protocol data 파일을 입력받은 뒤 소켓을 생성하여 서버로 보내기.
 */
 void
-SendBuffer (std::vector<unsigned char> vec) {
+SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char> vec) {
 	/*	소켓 프로그래밍 셋팅 */
 	struct sockaddr_in server;
 	int sock;
-	sock = tcp_connect(AF_INET, Client::IP, Client::PORT);
+	sock = tcp_connect(AF_INET, IP, PORT);
 	if (sock == -1) {
 		printf("tcp_connect fail");
 		exit(1);
