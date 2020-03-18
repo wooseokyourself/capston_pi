@@ -1,11 +1,6 @@
 #include "socket.hpp"
 #include "vision.hpp"
 
-/*
-    DEBUG_MODE
-        DEBUG_MODE
-*/
-
 int
 main (int argc, char* argv[]) {
     if (argc != 3) {

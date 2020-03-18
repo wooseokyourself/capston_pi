@@ -13,7 +13,7 @@
 
 #define ASSERT assert
 
-std::string IP;
+char* IP;
 unsigned short PORT;
 
 #endif

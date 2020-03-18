@@ -3,7 +3,7 @@
 int
 tcp_connect (int af, char* servip, unsigned short port) {
 	struct sockaddr_in servaddr;
-	int  s;
+	int s;
 	// 소켓 생성
 	if ((s = socket(af, SOCK_STREAM, 0)) < 0)
 		return -1;
