@@ -28,7 +28,7 @@ SendBuffer (std::vector<unsigned char> vec) {
 	/*	소켓 프로그래밍 셋팅 */
 	struct sockaddr_in server;
 	int sock;
-	sock = tcp_connect(AF_INET, IP, PORT);
+	sock = tcp_connect(AF_INET, Client::IP, Client::PORT);
 	if (sock == -1) {
 		printf("tcp_connect fail");
 		exit(1);

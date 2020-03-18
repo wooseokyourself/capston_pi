@@ -13,7 +13,9 @@
 
 #define ASSERT assert
 
-char* IP;
-unsigned short PORT;
+namespace Client {
+    char* IP;
+    unsigned short PORT;
+}
 
 #endif
