@@ -1,13 +1,7 @@
 #ifndef VISION
 #define VISION
 
-#include <cstdio>
-#include <cstring>
-#include <cassert>
-
-#include <vector>
-#include <unistd.h>
-#include <vector>
+#include "common.hpp"
 
 #include <opencv2/core/mat.hpp>
 #include <opencv2/highgui.hpp>
