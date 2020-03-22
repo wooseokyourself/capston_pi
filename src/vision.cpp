@@ -27,9 +27,9 @@ encoding (Mat img) {
 std::vector<unsigned char>
 ImageProcessing () {
     VideoCapture cap(0);
+    ASSERT (cap.isOpened() == true);
     cap.set(CV_CAP_PROP_FRAME_WIDTH, 1920);
     cap.set(CV_CAP_PROP_FRAME_HEIGHT, 1080);
-    ASSERT (cap.isOpened() == true);
     
     Mat imgRGB;
     cap >> imgRGB;
