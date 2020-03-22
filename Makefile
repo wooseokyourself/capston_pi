@@ -1,6 +1,5 @@
 # Target
 TARGET = .client.out
-TARGET_DEBUG = .client_debug.out
 
 # compiler, flags, libs
 CXX = g++
@@ -23,7 +22,7 @@ $(TARGET):
 run:
 	@echo "Enter the server's IP address and PORT number."
 	@read -p "<IP address> <PORT>: " IP PORT; \
-	./.client.out $$IP $$PORT
+	./.client.out ${IP} ${PORT}
 
 #-----------------------------------------------#
 
