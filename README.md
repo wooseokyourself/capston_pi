@@ -130,7 +130,7 @@ General configuration for OpenCV 4.2.0 =====================================
    
 # Application Protocol
     std::vector<unsigned char>
-> Encoded form of cv::Mat. There is a process of encoding cv::Mat into this this program.
+> Encoded form of cv::Mat. There is a process of encoding cv::Mat in this program.
    
 # Install
 
