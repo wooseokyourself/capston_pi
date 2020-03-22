@@ -150,15 +150,8 @@ General configuration for OpenCV 4.2.0 =====================================
 
 
    
-# Example Result of the Project
-
-## from Raspi camera (Release ver.)
+# Example Results from [Server](https://github.com/wooseokyourself/capstone_xu4)
 ![result 1](https://user-images.githubusercontent.com/49421142/77255814-91d4b600-6cad-11ea-9ee9-6d7c47b7027b.JPG)
 ![result 3](https://user-images.githubusercontent.com/49421142/77255816-95683d00-6cad-11ea-8f11-21a13eff36ba.JPG)
 ![result 2](https://user-images.githubusercontent.com/49421142/77255815-94371000-6cad-11ea-9fb3-8651462a395c.JPG)
 
-## from test image (Debugging ver.)
-![result 4](https://user-images.githubusercontent.com/49421142/77255817-96996a00-6cad-11ea-9a56-aacc81d4889f.JPG)
-![result 5](https://user-images.githubusercontent.com/49421142/77255821-98632d80-6cad-11ea-85e8-13ec533ee69e.JPG)
-![result 6](https://user-images.githubusercontent.com/49421142/77255822-9ac58780-6cad-11ea-9b11-a4bf53ba78d5.JPG)
-![result 7](https://user-images.githubusercontent.com/49421142/77255824-9bf6b480-6cad-11ea-9a36-721638835bf9.JPG)
