@@ -50,6 +50,6 @@ SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char> vec) {
 		sent += send (sock, &vec[i], sizeof(unsigned char), 0);
 	}
 	ASSERT (sent == vec.size());
-
+	printf ("SendBuffer clear! return true\n");
 	return true;
 }

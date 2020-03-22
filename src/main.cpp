@@ -18,8 +18,8 @@ main (int argc, char* argv[]) {
             printf ("send fails. picture again...\n");
             continue;
         }
-        else
-            sleep (10);
+        printf ("Now sleep 10 secs...\n");
+        sleep (10);
     }
     return 0;
 }
