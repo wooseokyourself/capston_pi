@@ -1,5 +1,5 @@
 # Introduction
-This directory contains client-side software of OpenCV DNN YOLOv3 project developed by 21500740@handong.edu, and is **freely available under the [Beerware license](https://github.com/wooseokyourself/capstone_pi/blob/master/LICENSE).**
+This directory contains client-side of OpenCV DNN YOLOv3 Project developed by 21500740@handong.edu, and is **freely available under the [Beerware license](https://github.com/wooseokyourself/capstone_pi/blob/master/LICENSE).**
 
 # Description
 This https://github.com/wooseokyourself/capstone_pi repo contains code for capturing a picture through a camera and sending it through C's socket API. The code works on Linux.   
