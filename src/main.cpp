@@ -9,17 +9,18 @@ main (int argc, char* argv[]) {
     }
     char* IP = argv[1];
     unsigned short PORT = (unsigned short) strtoul(argv[2], NULL, 0);
-    printf ("%s, %d\n", IP, PORT);
     while (true) {
         std::vector<unsigned char> vec = ImageProcessing ();
-        printf ("Capture is done.\n");
-        // If server's socket isn't opened, then throw present picture away.
-        if ( ! SendBuffer (IP, PORT, vec) ){
-            printf ("send fails. picture again...\n");
+
+        // If server's socket isn't opened, then throw the present picture away
+        // and capture a picture from the camera module again.
+        // So there is no way to check whether the IP or PORT is wrong in this code.
+        // If this program terminated abnormally, especially 'Makefile error 141',
+        // doubt it.
+        if ( ! SendBuffer (IP, PORT, vec) )
             continue;
-        }
-        printf ("Now sleep 10 secs...\n");
-        sleep (10);
+        else
+            sleep (10);
     }
     return 0;
 }
