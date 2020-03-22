@@ -9,6 +9,7 @@ main (int argc, char* argv[]) {
     }
     char* IP = argv[1];
     unsigned short PORT = (unsigned short) strtoul(argv[2], NULL, 0);
+    printf ("%s, %d\n", IP, PORT);
     while (true) {
         std::vector<unsigned char> vec = ImageProcessing ();
         // If server's socket isn't opened, then throw present picture away.
