@@ -133,13 +133,9 @@ General configuration for OpenCV 4.2.0 =====================================
 > Encoded form of cv::Mat. There is a process of encoding cv::Mat in this program.
    
 # Install
-
-### Compile
     make all
    
 # Run
-
-### Run
     make run
 > 'make run' will ask you the value of $(IP) and $(PORT). 
    
