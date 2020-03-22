@@ -13,8 +13,10 @@ main (int argc, char* argv[]) {
     while (true) {
         std::vector<unsigned char> vec = ImageProcessing ();
         // If server's socket isn't opened, then throw present picture away.
-        if ( ! SendBuffer (IP, PORT, vec) )
+        if ( ! SendBuffer (IP, PORT, vec) ){
+            printf ("send fails. picture again...\n");
             continue;
+        }
         else
             sleep (10);
     }
