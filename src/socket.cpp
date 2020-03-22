@@ -2,9 +2,11 @@
 
 int
 tcp_connect (int af, char* servip, unsigned short port) {
+	printf ("tcp_connect called\n");
 	struct sockaddr_in servaddr;
 	int s;
 	// Create a socket.
+	printf ("create a socket\n");
 	if ((s = socket(af, SOCK_STREAM, 0)) < 0)
 		return -1;
 	memset (&servaddr, 0, sizeof(servaddr));
@@ -15,6 +17,8 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	// Connection request
 	if (connect(s, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
 		return -1;
+
+	printf ("connection success!\n");
 	return s;
 }
 

@@ -12,6 +12,7 @@ main (int argc, char* argv[]) {
     printf ("%s, %d\n", IP, PORT);
     while (true) {
         std::vector<unsigned char> vec = ImageProcessing ();
+        printf ("Capture is done.\n");
         // If server's socket isn't opened, then throw present picture away.
         if ( ! SendBuffer (IP, PORT, vec) ){
             printf ("send fails. picture again...\n");
