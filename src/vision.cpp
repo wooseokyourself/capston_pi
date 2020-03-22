@@ -28,8 +28,8 @@ std::vector<unsigned char>
 ImageProcessing () {
     VideoCapture cap(0);
     ASSERT (cap.isOpened() == true);
-    cap.set(CAP_PROP_FRAME_WIDTH, 1920);
-    cap.set(CAP_PROP_FRAME_HEIGHT, 1080);
+    cap.set(CAP_PROP_FRAME_WIDTH, 1280);
+    cap.set(CAP_PROP_FRAME_HEIGHT, 720);
     
     Mat imgRGB;
     cap >> imgRGB;
