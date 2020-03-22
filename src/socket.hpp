@@ -15,7 +15,7 @@
 int
 tcp_connect (int af, char* servip, unsigned short port);
 
-void
+bool
 SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char> data);
 
 #endif
