@@ -130,14 +130,14 @@ General configuration for OpenCV 4.2.0 =====================================
    
 # Application Protocol
     std::vector<unsigned char>
-> Encoded form of cv::Mat. There is a process of encoding cv::Mat in this program.
+* Encoded form of cv::Mat. There is a process of encoding cv::Mat in this program.
    
 # Install
     make all
    
 # Run
     make run
-> 'make run' will ask you the value of $(IP) and $(PORT). 
+* 'make run' will ask you the value of $(IP) and $(PORT). 
    
 # Others
 
