@@ -11,7 +11,7 @@ You can also see [Server code here](https://github.com/wooseokyourself/capstone_
 * Linux raspberrypi 4.19.97-v7+
 * gcc/g++ 8.3.0
 * GNU Make 4.2.1
-* OpenCV 4.2.0 with contrib (Actually contrib is unnecessary.)
+* OpenCV 4.2.0
 
 #### *OpenCV Build Options in Test Environment*
 
