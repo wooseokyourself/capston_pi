@@ -46,11 +46,11 @@ recv_notification (int sock) {
 }
 
 bool
-recv_terminate (int sock) {
-	bool terminate;
-	int recvd = Recv (sock, &terminate, sizeof(terminate), sizeof(bool));
-	ASSERT (recvd == sizeof(terminate));
-	return terminate;
+recv_terminate_flag (int sock) {
+	bool terminate_flag;
+	int recvd = Recv (sock, &terminate_flag, sizeof(terminate_flag), sizeof(bool));
+	ASSERT (recvd == sizeof(terminate_flag));
+	return terminate_flag;
 }
 
 /*

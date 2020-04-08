@@ -25,7 +25,7 @@ bool
 recv_notification (int sock);
 
 bool
-recv_terminate (int sock);
+recv_terminate_flag (int sock);
 
 void
 SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char> data, int camId);
