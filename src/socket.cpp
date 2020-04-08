@@ -36,21 +36,27 @@ tcp_connect (int af, char* servip, unsigned short port) {
 }
 
 bool
-recv_notification (const int& sock) {
-	// Get notification to take a picture.
-	bool notification = false;
-	int recvd = Recv (sock, &notification, sizeof(notification), sizeof(bool));
-	ASSERT (recvd == sizeof(notification));
-
-	return notification;
+recv_terminate_flag (const int& sock) {
+	printf ("Second, recv terminate_flag\n");
+	printf (" >> terminate_flag's size: %d\n", sizeof(bool));
+	bool terminate_flag;
+	int recvd = Recv (sock, &terminate_flag, sizeof(terminate_flag), 1);
+	printf (" >> recvd: %d\n", recvd);
+	ASSERT (recvd == sizeof(terminate_flag));
+	return terminate_flag;
 }
 
 bool
-recv_terminate_flag (const int& sock) {
-	bool terminate_flag;
-	int recvd = Recv (sock, &terminate_flag, sizeof(terminate_flag), sizeof(bool));
-	ASSERT (recvd == sizeof(terminate_flag));
-	return terminate_flag;
+recv_notification (const int& sock) {
+	// Get notification to take a picture.
+	printf ("Third, recv notification\n");
+	printf (" >> notification's size: %d\n", sizeof(bool));
+	bool notification = false;
+	int recvd = Recv (sock, &notification, sizeof(notification), 1);
+	printf (" >> recvd: %d\n", recvd);
+	ASSERT (recvd == sizeof(notification));
+
+	return notification;
 }
 
 /*
