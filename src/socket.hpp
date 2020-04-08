@@ -21,6 +21,12 @@ Recv (int sock, const void *buf, ssize_t size, ssize_t unit);
 int
 tcp_connect (int af, char* servip, unsigned short port);
 
+bool
+recv_notification (int sock);
+
+bool
+recv_terminate (int sock);
+
 void
 SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char> data, int camId);
 
