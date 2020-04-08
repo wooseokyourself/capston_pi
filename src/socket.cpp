@@ -72,7 +72,7 @@ SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int 
 	ASSERT (sent == sizeof(int));
 
 	while (true) {
-		if (recv_terminate (sock))
+		if (recv_terminate_flag (sock))
 			break;
 
 		// Receive notification
