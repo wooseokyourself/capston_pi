@@ -1,3 +1,6 @@
+### MASTER BRANCH IS NOW TESTING!
+### >> *to support multi-clients. Supporting single-client program is in "singlecam" branch in this repo.*
+
 # Introduction
 This directory contains client-side of OpenCV DNN YOLOv3 Project developed by 21500740@handong.edu, and is **freely available under the [Beerware license](https://github.com/wooseokyourself/capstone_pi/blob/master/LICENSE).**
 
@@ -138,6 +141,7 @@ General configuration for OpenCV 4.2.0 =====================================
 # Run
     make run
 * 'make run' will ask you the value of $(IP) and $(PORT). 
+* Next, this program will ask you the ID. This number should be in order from 1.
    
 # Others
 
