@@ -36,7 +36,7 @@ tcp_connect (int af, char* servip, unsigned short port) {
 }
 
 bool
-recv_notification (int sock) {
+recv_notification (const int& sock) {
 	// Get notification to take a picture.
 	bool notification = false;
 	int recvd = Recv (sock, &notification, sizeof(notification), sizeof(bool));
@@ -46,7 +46,7 @@ recv_notification (int sock) {
 }
 
 bool
-recv_terminate_flag (int sock) {
+recv_terminate_flag (const int& sock) {
 	bool terminate_flag;
 	int recvd = Recv (sock, &terminate_flag, sizeof(terminate_flag), sizeof(bool));
 	ASSERT (recvd == sizeof(terminate_flag));

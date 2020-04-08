@@ -22,12 +22,12 @@ int
 tcp_connect (int af, char* servip, unsigned short port);
 
 bool
-recv_notification (int sock);
+recv_notification (const int& sock);
 
 bool
-recv_terminate_flag (int sock);
+recv_terminate_flag (const int& sock);
 
 void
-SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char> data, int camId);
+SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int camId);
 
 #endif
