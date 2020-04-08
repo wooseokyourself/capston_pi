@@ -68,8 +68,10 @@ SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int 
 	int sent;
 	
 	// Send camId
+	printf ("First, send a camId.. %d\n", camId);
 	sent = send (sock, &camId, sizeof(int), 0);
 	ASSERT (sent == sizeof(int));
+	printf (" >> sent camId!\n");
 
 	while (true) {
 		if (recv_terminate_flag (sock))
