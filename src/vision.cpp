@@ -33,6 +33,7 @@ ImageProcessing (const int& width, const int& height) {
     
     Mat imgRGB;
 
+    /*
     time_t timeObj = time(NULL);
     while (true) {
         struct  tm* tm = localtime(&timeObj);
@@ -40,7 +41,9 @@ ImageProcessing (const int& width, const int& height) {
             cap >> imgRGB;
             break;
         }
-    }
+    }*/
+    
+    cap >> imgRGB;
     
     return encoding (imgRGB);
 }
