@@ -28,11 +28,19 @@ std::vector<unsigned char>
 ImageProcessing () {
     VideoCapture cap(0);
     ASSERT (cap.isOpened() == true);
-    cap.set(CAP_PROP_FRAME_WIDTH, 1280);
-    cap.set(CAP_PROP_FRAME_HEIGHT, 720);
+    cap.set(CAP_PROP_FRAME_WIDTH, 416);
+    cap.set(CAP_PROP_FRAME_HEIGHT, 416);
     
     Mat imgRGB;
-    cap >> imgRGB;
+
+    time_t timeObj = time(NULL);
+	struct  tm* tm = localtime(&timeObj);
+    while (true) {
+        if (tm->tm_sec % 4) { // 모든 클라이언트가 동일한 시간에 촬영하기 위함
+            cap >> imgRGB;
+            break;
+        }
+    }
     
     return encoding (imgRGB);
 }

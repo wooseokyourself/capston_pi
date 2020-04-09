@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <cstring>
 #include <cassert>
+#include <ctime>
 
 #include <vector>
 #include <string>
