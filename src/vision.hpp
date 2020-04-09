@@ -17,6 +17,6 @@ std::vector<unsigned char>
 encoding (Mat img);
 
 std::vector<unsigned char>
-ImageProcessing ();
+ImageProcessing (const int& width, const int& height);
 
 #endif

@@ -65,6 +65,12 @@ recv_notification (const int& sock) {
 */
 void
 SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int camId) {
+	int width, height;
+	printf ("Input width: ");
+	scanf ("%d", &width);
+	printf ("Input height: ");
+	scanf ("%d", &height);
+
 	// Set socket.
 	struct sockaddr_in server;
 	int sock;
@@ -86,7 +92,7 @@ SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int 
 		// Receive notification
 		if (recv_notification(sock)) {
 			printf ("Got notification! take a picture.\n");
-			vec = ImageProcessing(); // Take a picture.
+			vec = ImageProcessing(width, height); // Take a picture.
 		}
 		else // terminate
 			break;
