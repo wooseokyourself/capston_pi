@@ -99,7 +99,7 @@ SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int 
 		// Receive notification
 		if (recv_notification(sock)) {
 			printf ("Got notification! take a picture.\n");
-			vec = ImageProcessing(width, height); // Take a picture.
+			vec = ImageProcessing(res); // Take a picture.
 		}
 		else // terminate
 			break;
