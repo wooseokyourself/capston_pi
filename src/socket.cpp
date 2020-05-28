@@ -18,6 +18,7 @@ Recv (int sock, const void *buf, ssize_t size, ssize_t unit) {
 
 int
 tcp_connect (int af, char* servip, unsigned short port) {
+	printf ("tcp_connect()\n");
 	struct sockaddr_in servaddr;
 	int s;
 	// Create a socket.
@@ -29,6 +30,7 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	servaddr.sin_port = htons(port);
 
 	// Connection request
+	printf ("connect()\n");
 	if (connect(s, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
 		return -1;
 
