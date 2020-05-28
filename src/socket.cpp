@@ -15,7 +15,6 @@ Recv (int sock, const void *buf, ssize_t size, ssize_t unit) {
 	return recvd;
 }
 
-
 int
 tcp_connect (int af, char* servip, unsigned short port) {
 	printf ("tcp_connect()\n");
@@ -37,29 +36,38 @@ tcp_connect (int af, char* servip, unsigned short port) {
 	return s;
 }
 
-bool
-recv_terminate_flag (const int& sock) {
-	printf ("Second, recv terminate_flag\n");
-	printf (" >> terminate_flag's size: %d\n", sizeof(bool));
-	bool terminate_flag;
-	int recvd = Recv (sock, &terminate_flag, sizeof(terminate_flag), 1);
-	printf (" >> recvd: %d\n", recvd);
-	ASSERT (recvd == sizeof(terminate_flag));
-	return terminate_flag;
+int
+recv_mode_flag (const int& sock) {
+	// printf ("Second, recv terminate_flag\n");
+	int MODE_FLAG;
+	int recvd = Recv (sock, &MODE_FLAG, sizeof(MODE_FLAG), 1);
+	// printf (" >> recvd: %d\n", recvd);
+	ASSERT (recvd == sizeof(MODE_FLAG));
+	return MODE_FLAG;
+}
+
+Size
+recv_res (const int& sock) {
+	Size res;
+	int recvd = Recv (sock, &res, sizeof(res), 1);
+	ASSERT (recvd == sizeof(res));
+
+	return res;
 }
 
 bool
 recv_notification (const int& sock) {
 	// Get notification to take a picture.
-	printf ("Third, recv notification\n");
-	printf (" >> notification's size: %d\n", sizeof(bool));
+	// printf ("Third, recv notification\n");
+	// printf (" >> notification's size: %d\n", sizeof(bool));
 	bool notification = false;
 	int recvd = Recv (sock, &notification, sizeof(notification), 1);
-	printf (" >> recvd: %d\n", recvd);
+	// printf (" >> recvd: %d\n", recvd);
 	ASSERT (recvd == sizeof(notification));
 
 	return notification;
 }
+
 
 /*
 	Returns false if connection fails.
@@ -67,12 +75,6 @@ recv_notification (const int& sock) {
 */
 void
 SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int camId) {
-	int width, height;
-	printf ("Input width: ");
-	scanf ("%d", &width);
-	printf ("Input height: ");
-	scanf ("%d", &height);
-
 	// Set socket.
 	struct sockaddr_in server;
 	int sock;
@@ -82,15 +84,18 @@ SendBuffer (char* IP, unsigned short PORT, std::vector<unsigned char>& vec, int 
 	int sent;
 	
 	// Send camId
-	printf ("First, send a camId.. %d\n", camId);
+	// printf ("First, send a camId.. %d\n", camId);
 	sent = send (sock, &camId, sizeof(int), 0);
 	ASSERT (sent == sizeof(int));
-	printf (" >> sent camId!\n");
+	// printf (" >> sent camId!\n");
 
+	int MODE_FLAG;
+	Size res(416, 416); // default is 416X416
 	while (true) {
-		if (recv_terminate_flag (sock))
+		MODE_FLAG = recv_mode_flag(sock);
+		if (MODE_FLAG == TERMINATE_MODE)
 			break;
-
+		res = recv_res(sock);
 		// Receive notification
 		if (recv_notification(sock)) {
 			printf ("Got notification! take a picture.\n");

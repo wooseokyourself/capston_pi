@@ -21,8 +21,11 @@ Recv (int sock, const void *buf, ssize_t size, ssize_t unit);
 int
 tcp_connect (int af, char* servip, unsigned short port);
 
-bool
-recv_terminate_flag (const int& sock);
+int
+recv_mode_flag (const int& sock);
+
+Size
+recv_res (const int& sock);
 
 bool
 recv_notification (const int& sock);
