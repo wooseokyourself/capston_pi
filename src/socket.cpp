@@ -54,6 +54,10 @@ recv_res (const int& sock) {
 	recvd = Recv (sock, &height, sizeof(height), 1);
 	ASSERT (recvd == sizeof(height));
 	printf ("recv res: %d, %d\n", width, height);
+	if (width > 2000)
+		width = 416;
+	if (height > 2000)
+		height = 416;
 	return Size(width, height);
 }
 
