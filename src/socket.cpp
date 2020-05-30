@@ -53,7 +53,7 @@ recv_res (const int& sock) {
 	ASSERT (recvd == sizeof(width));
 	recvd = Recv (sock, &height, sizeof(height), 1);
 	ASSERT (recvd == sizeof(height));
-
+	printf ("recv res: %d, %d\n", width, height);
 	return Size(width, height);
 }
 
