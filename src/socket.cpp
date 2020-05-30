@@ -48,11 +48,13 @@ recv_mode_flag (const int& sock) {
 
 Size
 recv_res (const int& sock) {
-	Size res;
-	int recvd = Recv (sock, &res, sizeof(res), 1);
-	ASSERT (recvd == sizeof(res));
+	int width, height;
+	int recvd = Recv (sock, &width, sizeof(width), 1);
+	ASSERT (recvd == sizeof(width));
+	recvd = Recv (sock, &height, sizeof(height), 1);
+	ASSERT (recvd == sizeof(height));
 
-	return res;
+	return Size(width, height);
 }
 
 bool
