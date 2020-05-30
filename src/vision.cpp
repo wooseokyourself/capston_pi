@@ -19,8 +19,10 @@ encoding (Mat img) {
 	std::vector<int> params;
 	params.push_back (IMWRITE_JPEG_QUALITY);
 	params.push_back (95);
-    imencode (".jpeg", img, buf, params);
 
+    printf ("encoding now!\n");
+    imencode (".jpeg", img, buf, params);
+    printf ("encoding done!\n");
     return buf;
 }
 
