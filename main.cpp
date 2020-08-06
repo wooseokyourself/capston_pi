@@ -111,12 +111,12 @@ string getCurrTime () {
 	struct  tm* tm = localtime(&timeObj);
     std::string currTime, temp;
     currTime += std::to_string (tm->tm_year+1900);
-    currTime += ".";
+    currTime += "-";
 
     temp = std::to_string (tm->tm_mon+1);
     if (temp.length() == 1) temp = "0" + temp;
 	currTime += temp;
-    currTime += ".";
+    currTime += "-";
 
     temp = std::to_string (tm->tm_mday);
     if (temp.length() == 1) temp = "0" + temp;
