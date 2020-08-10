@@ -112,7 +112,7 @@ string takePicture(const int width, const int height) {
     vector<int> params;
     params.push_back(IMWRITE_JPEG_QUALITY);
     params.push_back(95);
-    imencode(".jpeg", img, buf);
+    imencode(".jpeg", frame, buf);
     auto *enc_msg = reinterpret_cast<unsigned char*>(buf.data());
     return base64_encode(enc_msg, buf.size());
 }
