@@ -31,7 +31,7 @@ pair<int, int> get_setting(const string& URL) {
     reader.parse(response_string, jsonData);
     int width = jsonData["sizeW"].asInt();
     int height = jsonData["sizeH"].asInt();
-    return pair<width, height>;
+    return make_pair(width, height);
 }
 
 pair<int, Date> post_roi_image(const string& URL, const string& b64encoded) {
@@ -92,7 +92,7 @@ Date post_image(const string& URL, const string& b64encode, const Date& original
     sendingData["cameraID"] = cameraID;
     sendingData["originalDate"] = originalDate.form;
     sendingData["image"] = b64encode;
-    string dataStr = writer.write(sendingDate);
+    string dataStr = writer.write(sendingData);
 
     struct curl_slist *headerlist = nullptr;
     headerlist = curl_slist_append(headerlist, "Content-Type: application/json");
