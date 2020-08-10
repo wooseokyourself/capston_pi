@@ -1,4 +1,3 @@
-#include "common.hpp"
 #include "http_request.hpp"
 #include "image.hpp"
 

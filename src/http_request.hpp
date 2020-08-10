@@ -1,5 +1,5 @@
 #ifndef HTTP_REQUEST
-#include HTTP_REQUEST
+#define HTTP_REQUEST
 
 #include <iostream>
 #include <utility>
