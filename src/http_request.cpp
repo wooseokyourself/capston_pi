@@ -6,6 +6,7 @@ size_t writeFunction(void* ptr, size_t size, size_t nmemb, string* data) {
 }
 
 pair<int, int> get_setting(const string& URL) {
+    cout << "Call get_setting" << endl;
     curl_global_init(CURL_GLOBAL_DEFAULT);
     auto curl = curl_easy_init();
     if (!curl)
@@ -35,6 +36,7 @@ pair<int, int> get_setting(const string& URL) {
 }
 
 pair<int, Date> post_roi_image(const string& URL, const string& b64encoded) {
+    cout << "call post_roi_image" << endl;
     curl_global_init(CURL_GLOBAL_DEFAULT);
     auto curl = curl_easy_init();
     if (!curl)
@@ -82,6 +84,7 @@ pair<int, Date> post_roi_image(const string& URL, const string& b64encoded) {
 }
 
 Date post_image(const string& URL, const string& b64encode, const Date& originalDate, const int& cameraID, pair<int, int>& size) {
+    cout << "call post_image" << endl;
     curl_global_init(CURL_GLOBAL_DEFAULT);
     auto curl = curl_easy_init();
     if (!curl)
