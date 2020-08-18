@@ -81,7 +81,7 @@ pair<int, Date> post_roi_image(const string& URL, const string& b64encoded) {
     return make_pair(cameraID, Date(originalDate));
 }
 
-Date post_image(const string& URL, const string& b64encode, const Date& originalDate, const int& cameraID) {
+Date post_image(const string& URL, const string& b64encode, const Date& originalDate, const int& cameraID, pair<int, int>& size) {
     curl_global_init(CURL_GLOBAL_DEFAULT);
     auto curl = curl_easy_init();
     if (!curl)
@@ -118,5 +118,7 @@ Date post_image(const string& URL, const string& b64encode, const Date& original
     Json::Reader reader;
     reader.parse(response_string, jsonData);
     string nextCaptureTime = jsonData["originalDate"].asString();
+    size.first = jsonData["sizeW"].asInt();
+    size.second = jsonData["sizeH"].asInt();
     return Date(nextCaptureTime);
 }

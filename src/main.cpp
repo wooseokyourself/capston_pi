@@ -18,7 +18,7 @@ int main(void) {
     while (true) {
         if (nextCaptureTime <= Date()) {
             string b64encoded = takePicture(size.first, size.second);
-            nextCaptureTime = post_image(URL + "/api/basic/image-info", b64encoded, nextCaptureTime, cameraID);
+            nextCaptureTime = post_image(URL + "/api/basic/image-info", b64encoded, nextCaptureTime, cameraID, size);
         }
     }
 
